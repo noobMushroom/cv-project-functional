@@ -1,4 +1,7 @@
-export default function PersonalInfo(props: any) {
+interface personalInfoProps {
+  handleChange: (e: Event) => void;
+}
+export default function PersonalInfo(props: personalInfoProps) {
   return (
     <div className="flex flex-col justify-center items-center">
       <input

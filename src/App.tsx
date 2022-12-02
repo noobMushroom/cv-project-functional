@@ -4,17 +4,20 @@ import Form from './component/Form';
 import { v4 as uuidv4 } from 'uuid';
 
 export interface formProps {
-  handlePersonalInfo: (e: Event) => void;
-  handleWorkInfo: (e: Event, key: string) => void;
-  handleContactInfo: (e: Event) => void;
-  handleSkillInfo: (e: Event, key: string) => void;
-  addSkill: (e: Event) => void;
-  deleteSkill: (e: Event, key: string) => void;
-  handleEducationInfo: (e: Event, key: string) => void;
-  addWork: (e: Event) => void;
-  deleteWork: (e: Event, key: string) => void;
-  addEducation: (e: Event) => void;
-  deleteEducation: (e: Event, id: string) => void;
+  handlePersonalInfo: (e: React.FormEvent<HTMLInputElement>) => void;
+  handleWorkInfo: (e: React.FormEvent<HTMLInputElement>, key: string) => void;
+  handleContactInfo: (e: React.FormEvent<HTMLInputElement>) => void;
+  handleSkillInfo: (e: React.FormEvent<HTMLInputElement>, key: string) => void;
+  addSkill: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  deleteSkill: (e: React.MouseEvent<HTMLButtonElement>, key: string) => void;
+  handleEducationInfo: (
+    e: React.FormEvent<HTMLInputElement>,
+    key: string
+  ) => void;
+  addWork: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  deleteWork: (e: React.MouseEvent<HTMLButtonElement>, key: string) => void;
+  addEducation: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  deleteEducation: (e: React.MouseEvent<HTMLButtonElement>, id: string) => void;
 }
 
 interface Education {
@@ -79,7 +82,7 @@ export default function App() {
   });
 
   // handling personal info (name, last name, about ) TODO:add image option
-  const handlepersonalInfo = (e: Event) => {
+  const handlepersonalInfo = (e: React.FormEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
     switch (target.id) {
       case 'lastName':
@@ -111,7 +114,7 @@ export default function App() {
   ///////////////////////////////// Handling contact info//////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////
 
-  const handleContactInfo = (e: Event) => {
+  const handleContactInfo = (e: React.FormEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
     switch (target.id) {
       case 'number':
@@ -148,7 +151,7 @@ export default function App() {
   ///////////////////////////////// handling work info//////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////
 
-  const handleWorkInfo = (e: Event, id: string) => {
+  const handleWorkInfo = (e: React.FormEvent<HTMLInputElement>, id: string) => {
     const target = e.target as HTMLInputElement;
     const element: Work = state.work.find((work) => work.id === id)!;
     switch (target.id) {
@@ -177,7 +180,7 @@ export default function App() {
     }));
   };
 
-  const addWork = (e: Event) => {
+  const addWork = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setState((prevState: Person) => ({
       ...prevState,
@@ -194,7 +197,7 @@ export default function App() {
       ],
     }));
   };
-  const deleteWork = (e: Event, key: string) => {
+  const deleteWork = (e: React.MouseEvent<HTMLButtonElement>, key: string) => {
     e.preventDefault();
     let temp = state.work.filter((element: Work) => element.id !== key);
     setState((prevState: Person) => ({
@@ -207,7 +210,10 @@ export default function App() {
   ////////////////////////////// handle education information////////////////////////////////
   ///////////////////////////////////////////////////////////////////////////////////////////
 
-  const handleEducationInfo = (e: Event, id: string) => {
+  const handleEducationInfo = (
+    e: React.FormEvent<HTMLInputElement>,
+    id: string
+  ) => {
     const target = e.target as HTMLInputElement;
     const element: Education = state.education.find(
       (element) => element.id === id
@@ -230,7 +236,7 @@ export default function App() {
     }
   };
 
-  const addEducation = (e: Event) => {
+  const addEducation = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setState((prevState: Person) => ({
       ...prevState,
@@ -241,7 +247,10 @@ export default function App() {
     }));
   };
 
-  const deleteEducation = (e: Event, key: string) => {
+  const deleteEducation = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    key: string
+  ) => {
     e.preventDefault();
     let temp = state.education.filter((element) => element.id !== key);
     setState((prevState: Person) => ({
@@ -254,7 +263,10 @@ export default function App() {
   ///////////////////////////////////////// Skills //////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////////////////////////////////
 
-  const handleSkillInfo = (e: Event, id: string) => {
+  const handleSkillInfo = (
+    e: React.FormEvent<HTMLInputElement>,
+    id: string
+  ) => {
     e.preventDefault();
     let target = e.target as HTMLInputElement;
     let temp: Skill = state.skills.find((element) => element.id === id)!;
@@ -266,7 +278,7 @@ export default function App() {
     }));
   };
 
-  const addSkill = (e: Event) => {
+  const addSkill = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setState((prevState: Person) => ({
       ...prevState,
@@ -274,7 +286,7 @@ export default function App() {
     }));
   };
 
-  const deleteSkill = (e: Event, key: string) => {
+  const deleteSkill = (e: React.MouseEvent<HTMLButtonElement>, key: string) => {
     e.preventDefault();
     let temp = state.skills.filter((element) => element.id !== key);
     setState((prevState) => ({
