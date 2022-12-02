@@ -65,11 +65,13 @@ export default function App() {
           ...prevState,
           personalInfo: { ...prevState.personalInfo, lastName: target.value },
         }));
+        break;
       case 'firstName':
         setState((prevState) => ({
           ...prevState,
           personalInfo: { ...prevState.personalInfo, name: target.value },
         }));
+        break;
     }
   };
 
