@@ -1,4 +1,4 @@
-import { useState, useReducer } from 'react';
+import { useState, useReducer, useEffect, useCallback } from 'react';
 import './styles/index.css';
 import Form from './component/Form';
 
@@ -39,100 +39,45 @@ export interface Person {
   education: Education[];
 }
 
-enum ChangeState {
-  personalInfo = 'PERSONAL_INFO',
-  contact = 'CONTACT',
-  work = 'WORK',
-  education = 'EDUCATION',
-  skills = 'SKILL',
-}
-
-enum Name {
-  firstName = 'NAME',
-  lastName = 'LAST_NAME',
-  about = 'ABOUT',
-  image = 'IMG',
-}
-
-enum ContactEnum {
-  number = 'NUMBER',
-  email = 'EMAIL',
-  website = 'WEBSITE',
-  address = 'ADDRESS',
-}
-
-enum EducationEnum {
-  college = 'COLLEGE',
-  course = 'COURSE',
-  passingYear = 'PASSING_YEAR',
-  startingYear = 'STARTING_YEAR',
-  addEducation = 'ADD_EDUCATION',
-}
-
-enum WorkEnum {
-  jobTitle = 'JOB_TITLE',
-  company = 'COMPANY',
-  companyLocation = 'LOCATION',
-  startingDate = 'STARTING_DATE',
-  endingDate = 'ENDING_DATE',
-  addwork = 'ADD_WORK',
-}
-
-enum SkillEnum {
-  skills = 'SKILL',
-  addSkill = 'ADD_SKILL',
-}
-
-type NameAction = {
-  type: Name;
-  payload: string;
-};
-
-// type to set the state in the main function
-type setStateAction = {
-  type: ChangeState;
-  subType: SkillEnum | WorkEnum | EducationEnum | ContactEnum | Name;
-  payload: any | number;
-};
-
-// function to set personal info state
-function personalInfoReducer(state: Person, action: NameAction) {
-  const { type, payload } = action;
-}
-
-function reducer(state: Person, action: setStateAction): Person {
-  const { type, payload } = action;
-  switch (type) {
-    case ChangeState.contact:
-      return { ...state };
-    case ChangeState.personalInfo:
-      return { ...state };
-    case ChangeState.work:
-      return { ...state };
-    case ChangeState.skills:
-      return { ...state };
-    case ChangeState.education:
-      return { ...state };
-    default:
-      return state;
-  }
-}
 export default function App() {
-  const initialState = {
-    personal: { name: 'Deepak', lastName: 'Chandra', about: 'I am super cool' },
-    contactInfo: {
-      contact: '899898909',
+  const [state, setState] = useState({
+    personalInfo: {
+      name: '',
+      lastName: '',
+      description: '',
+    },
+    contact: {
+      contactNumber: 899898909,
       email: 'something@some.com',
       address: 'tokyo',
-      web: 'john.com',
+      website: 'john.com',
     },
     skills: [],
     education: [],
     work: [],
+  });
+
+  const handlepersonalInfo = (e: Event) => {
+    const target = e.target as HTMLInputElement;
+    switch (target.id) {
+      case 'lastName':
+        setState((prevState) => ({
+          ...prevState,
+          personalInfo: { ...prevState.personalInfo, lastName: target.value },
+        }));
+      case 'firstName':
+        setState((prevState) => ({
+          ...prevState,
+          personalInfo: { ...prevState.personalInfo, name: target.value },
+        }));
+    }
   };
+
   return (
-    <div className="w-full bg-[#0F2830] flex justify-center">
-      <Form {...initialState} />
+    <div className="w-full bg-[#0F2830] flex-col items-center flex justify-center">
+      <Form handlePersonalInfo={handlepersonalInfo} />
+      <div className="text-white">{state.personalInfo.name}</div>
+      <div className="text-white">{state.personalInfo.lastName}</div>
     </div>
   );
 }

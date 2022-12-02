@@ -1,12 +1,10 @@
-import { useState } from 'react';
 import PersonalInfo from './PersonalInfo';
 import ContactInfo from './ContactInfo';
 import Work from './Work';
 import EducationDiv from './EducationInfo';
 import SkillsDiv from './SkillsInfo';
-import { Person } from '../App';
 
-export default function Form(props: Person) {
+export default function Form(props: any) {
   return (
     <form className=" w-3/4 p-[1rem] flex flex-col">
       <div>
@@ -14,7 +12,7 @@ export default function Form(props: Person) {
           Personal info
         </h1>
       </div>
-      <PersonalInfo {...props} />
+      <PersonalInfo handleChange={props.handlePersonalInfo} />
       <div>
         <h1 className="mt-[2rem] text-white text-4xl font-black text-center mb-[1rem]">
           Contact Info
