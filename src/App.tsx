@@ -1,7 +1,21 @@
-import { useState, useReducer, useEffect, useCallback } from 'react';
+import { useState } from 'react';
 import './styles/index.css';
 import Form from './component/Form';
 import { v4 as uuidv4 } from 'uuid';
+
+export interface formProps {
+  handlePersonalInfo: (e: Event) => void;
+  handleWorkInfo: (e: Event, key: string) => void;
+  handleContactInfo: (e: Event) => void;
+  handleSkillInfo: (e: Event, key: string) => void;
+  addSkill: (e: Event) => void;
+  deleteSkill: (e: Event, key: string) => void;
+  handleEducationInfo: (e: Event, key: string) => void;
+  addWork: (e: Event) => void;
+  deleteWork: (e: Event, key: string) => void;
+  addEducation: (e: Event) => void;
+  deleteEducation: (e: Event, id: string) => void;
+}
 
 interface Education {
   course: string;
@@ -227,9 +241,9 @@ export default function App() {
     }));
   };
 
-  const deleteEducation = (e: Event, id: string) => {
+  const deleteEducation = (e: Event, key: string) => {
     e.preventDefault();
-    let temp = state.education.filter((element) => element.id !== id);
+    let temp = state.education.filter((element) => element.id !== key);
     setState((prevState: Person) => ({
       ...prevState,
       education: [...temp],
@@ -252,9 +266,38 @@ export default function App() {
     }));
   };
 
+  const addSkill = (e: Event) => {
+    e.preventDefault();
+    setState((prevState: Person) => ({
+      ...prevState,
+      skills: [...prevState.skills, { skill: '', id: uuidv4() }],
+    }));
+  };
+
+  const deleteSkill = (e: Event, key: string) => {
+    e.preventDefault();
+    let temp = state.skills.filter((element) => element.id !== key);
+    setState((prevState) => ({
+      ...prevState,
+      skills: [...temp],
+    }));
+  };
+
   return (
     <div className="w-full bg-[#0F2830] flex-col items-center flex justify-center">
-      <Form handlePersonalInfo={handlepersonalInfo} />
+      <Form
+        handlePersonalInfo={handlepersonalInfo}
+        handleContactInfo={handleContactInfo}
+        handleSkillInfo={handleSkillInfo}
+        handleEducationInfo={handleEducationInfo}
+        handleWorkInfo={handleWorkInfo}
+        addWork={addWork}
+        addEducation={addEducation}
+        deleteWork={deleteWork}
+        addSkill={addSkill}
+        deleteSkill={deleteSkill}
+        deleteEducation={deleteEducation}
+      />
     </div>
   );
 }

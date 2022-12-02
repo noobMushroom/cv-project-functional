@@ -3,8 +3,9 @@ import ContactInfo from './ContactInfo';
 import Work from './Work';
 import EducationDiv from './EducationInfo';
 import SkillsDiv from './SkillsInfo';
+import { formProps } from '../App';
 
-export default function Form(props: any) {
+export default function Form(props: formProps) {
   return (
     <form className=" w-3/4 p-[1rem] flex flex-col">
       <div>
