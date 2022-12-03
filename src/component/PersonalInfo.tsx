@@ -1,11 +1,13 @@
 interface personalInfoProps {
-  handleChange: (e: Event) => void;
+  handleChange: (
+    e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
 }
 export default function PersonalInfo(props: personalInfoProps) {
   return (
     <div className="flex flex-col justify-center items-center">
       <input
-        onChange={(e) => props.handleChange(e)}
+        onChange={props.handleChange}
         id="firstName"
         className="w-full  text-white my-[1rem] py-[0.5rem] px-[1rem] placeholder-white bg-teal-900 text-xl box font-serif font-medium focus:outline-none"
         type="text"

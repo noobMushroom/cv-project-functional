@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import './styles/index.css';
 import Form from './component/Form';
 import { v4 as uuidv4 } from 'uuid';
 
 export interface formProps {
-  handlePersonalInfo: (e: React.FormEvent<HTMLInputElement>) => void;
+  handlePersonalInfo: (
+    e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
   handleWorkInfo: (e: React.FormEvent<HTMLInputElement>, key: string) => void;
   handleContactInfo: (e: React.FormEvent<HTMLInputElement>) => void;
   handleSkillInfo: (e: React.FormEvent<HTMLInputElement>, key: string) => void;
@@ -18,6 +20,7 @@ export interface formProps {
   deleteWork: (e: React.MouseEvent<HTMLButtonElement>, key: string) => void;
   addEducation: (e: React.MouseEvent<HTMLButtonElement>) => void;
   deleteEducation: (e: React.MouseEvent<HTMLButtonElement>, id: string) => void;
+  state: Person;
 }
 
 interface Education {
@@ -82,7 +85,9 @@ export default function App() {
   });
 
   // handling personal info (name, last name, about ) TODO:add image option
-  const handlepersonalInfo = (e: React.FormEvent<HTMLInputElement>) => {
+  const handlepersonalInfo = (
+    e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const target = e.target as HTMLInputElement;
     switch (target.id) {
       case 'lastName':
@@ -309,6 +314,7 @@ export default function App() {
         addSkill={addSkill}
         deleteSkill={deleteSkill}
         deleteEducation={deleteEducation}
+        state={state}
       />
     </div>
   );
