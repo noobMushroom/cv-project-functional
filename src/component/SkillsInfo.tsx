@@ -18,6 +18,7 @@ export default function SkillsDiv(props: SkillsDivProps) {
             className="flex items-center w-full justify-between"
           >
             <input
+              onChange={(e) => handleSkillInfo(e, element.id)}
               type="text"
               placeholder="My cool skill"
               className="w-5/6 col-span-3  text-white my-[1rem] py-[0.5rem] px-[1rem] placeholder-white  text-xl font-serif font-medium focus:outline-none bg-teal-900 box"

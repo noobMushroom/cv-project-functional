@@ -22,11 +22,15 @@ export default function Work(props: WorkProps) {
             key={element.id}
           >
             <input
+              onChange={(e) => handleWorkInfo(e, element.id)}
+              id="company"
               type="text"
               placeholder="Company name"
               className="col-span-3  text-white my-[1rem] py-[0.5rem] px-[1rem] placeholder-white  text-xl font-serif font-medium focus:outline-none bg-teal-900 box"
             />
             <input
+              onChange={(e) => handleWorkInfo(e, element.id)}
+              id="title"
               type="text"
               placeholder="Job title"
               className="col-span-3 text-white my-[1rem] py-[0.5rem] px-[1rem] placeholder-white  text-xl font-serif font-medium focus:outline-none box bg-teal-900"
@@ -38,6 +42,8 @@ export default function Work(props: WorkProps) {
                 alt=""
               />
               <input
+                onChange={(e) => handleWorkInfo(e, element.id)}
+                id="location"
                 type="text"
                 placeholder="Location"
                 className="col-span-3  w-full pl-12 text-white my-[1rem] py-[0.5rem] px-[1rem] placeholder-white text-xl font-serif font-medium focus:outline-none bg-teal-900 box"
@@ -46,7 +52,8 @@ export default function Work(props: WorkProps) {
             <div className="flex  mr-[1rem]  text-white h-[2.5rem] px-[1rem] py-[0.8rem] items-center text-l font-serif font-medium box bg-teal-900">
               <label htmlFor="startingDate">Starting date:</label>
               <input
-                id="startingDate"
+                onChange={(e) => handleWorkInfo(e, element.id)}
+                id="starting"
                 type="date"
                 className="bg-transparent focus:outline-none ml-2"
               />
@@ -54,7 +61,8 @@ export default function Work(props: WorkProps) {
             <div className="flex  mr-[1rem] text-white h-[2.5rem] px-[1rem] py-[0.8rem] items-center text-l font-serif font-medium bg-teal-900 box">
               <label htmlFor="endingDate">Ending date:</label>
               <input
-                id="endingDate"
+                onChange={(e) => handleWorkInfo(e, element.id)}
+                id="ending"
                 type="date"
                 className=" bg-transparent focus:outline-none ml-2"
               />

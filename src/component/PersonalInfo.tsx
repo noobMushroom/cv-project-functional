@@ -29,7 +29,7 @@ export default function PersonalInfo(props: personalInfoProps) {
       <div className="my-[1rem] w-full bg-teal-900 box text-xl py-[0.5rem] px-[1rem] text-white font-serif font-medium">
         <label htmlFor="profilePic">Select your profile pic </label>
         <input
-          onChange={props.handleChange}
+          onChange={(e) => props.handleChange(e)}
           type="file"
           id="profilePic"
           className="ml-4 text-m text-zinc-400 file:bg-transparent file:outline-none file:border-none file:text-white file:hover:text-cyan-400"

@@ -2,6 +2,9 @@ import { ChangeEvent, useState } from 'react';
 import './styles/index.css';
 import Form from './component/Form';
 import { v4 as uuidv4 } from 'uuid';
+import livePreviewImage from './assets/visibility_FILL0_wght300_GRAD0_opsz48.svg';
+import CvPreview from './component/cvPreview/CvPreview';
+import ProfilePic from './assets/joanna-nix-walkup-p7zGmc33s0U-unsplash.jpg';
 
 export interface formProps {
   handlePersonalInfo: (
@@ -40,10 +43,11 @@ interface Work {
   id: string;
 }
 
-export interface PersonalInfo {
+interface PersonalInfo {
   name: string;
   lastName: string;
   about: string;
+  image: string;
 }
 
 interface Contact {
@@ -69,6 +73,7 @@ export interface Person {
 export default function App() {
   const [state, setState] = useState<Person>({
     personal: {
+      image: ProfilePic,
       name: '',
       lastName: '',
       about: '',
@@ -84,22 +89,37 @@ export default function App() {
     work: [],
   });
 
-  // handling personal info (name, last name, about ) TODO:add image option
+  // handling personal info (name, last name, about )
   const handlepersonalInfo = (
     e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const target = e.target as HTMLInputElement;
+    let image: File;
+
+    // for type checking
+    if (target.files !== null && target.files.length !== 0) {
+      image = target.files[0];
+    }
     switch (target.id) {
-      case 'lastName':
+      case 'profilePic':
         setState((prevState: Person) => ({
           ...prevState,
-          personal: { ...prevState.personal, lastName: target.value },
+          personal: {
+            ...prevState.personal,
+            image: URL.createObjectURL(image),
+          },
         }));
         break;
       case 'firstName':
         setState((prevState: Person) => ({
           ...prevState,
           personal: { ...prevState.personal, name: target.value },
+        }));
+        break;
+      case 'lastName':
+        setState((prevState: Person) => ({
+          ...prevState,
+          personal: { ...prevState.personal, lastName: target.value },
         }));
         break;
       case 'about':
@@ -125,7 +145,7 @@ export default function App() {
       case 'number':
         setState((prevState: Person) => ({
           ...prevState,
-          contactInfo: { ...state.contactInfo, number: target.value },
+          contactInfo: { ...state.contactInfo, contact: target.value },
         }));
         break;
       case 'address':
@@ -165,6 +185,7 @@ export default function App() {
         break;
       case 'company':
         element.company = target.value;
+        break;
       case 'location':
         element.location = target.value;
         break;
@@ -239,6 +260,13 @@ export default function App() {
       default:
         return { ...state };
     }
+
+    const temp = state.education.filter((element) => element.id !== id);
+
+    setState((prevState: Person) => ({
+      ...prevState,
+      education: [...temp, { ...element }],
+    }));
   };
 
   const addEducation = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -279,7 +307,7 @@ export default function App() {
     let tempArray = state.skills.filter((element) => element.id !== id);
     setState((prevState: Person) => ({
       ...prevState,
-      skills: [...tempArray],
+      skills: [...tempArray, { ...temp }],
     }));
   };
 
@@ -301,7 +329,7 @@ export default function App() {
   };
 
   return (
-    <div className="w-full bg-[#0F2830] flex-col items-center flex justify-center">
+    <div className="relative w-full bg-[#0F2830] flex-col items-center flex justify-center">
       <Form
         handlePersonalInfo={handlepersonalInfo}
         handleContactInfo={handleContactInfo}
@@ -316,6 +344,11 @@ export default function App() {
         deleteEducation={deleteEducation}
         state={state}
       />
+      <button className="hover:text-sky-500 font-[Helvetica] text-white fixed flex flex-col font-semibold uppercase text-xl items-center bottom-4 right-4 ">
+        <img src={livePreviewImage} alt="" className="w-[4rem]" />
+        <h3 className="mt-[-0.5rem]">Live Preview</h3>
+      </button>
+      <CvPreview state={state} />
     </div>
   );
 }

@@ -19,7 +19,7 @@ export default function Form(props: formProps) {
           Contact Info
         </h1>
       </div>
-      <ContactInfo />
+      <ContactInfo handleContactInfo={props.handleContactInfo} />
       <div>
         <h1 className="mt-[2rem]  text-white text-4xl font-black text-center">
           Experience
