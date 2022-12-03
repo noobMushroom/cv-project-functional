@@ -25,19 +25,34 @@ export default function Form(props: formProps) {
           Experience
         </h1>
       </div>
-      <Work />
+      <Work
+        handleWorkInfo={props.handleWorkInfo}
+        addWork={props.addWork}
+        deleteWork={props.deleteWork}
+        state={props.state}
+      />
       <div>
         <h1 className="mt-[2rem] text-white text-4xl font-black text-center">
           Education
         </h1>
       </div>
-      <EducationDiv />
+      <EducationDiv
+        state={props.state}
+        addEducation={props.addEducation}
+        deleteEducation={props.deleteEducation}
+        handleEducationInfo={props.handleEducationInfo}
+      />
       <div>
         <h1 className="mt-[2rem] text-white text-4xl font-black text-center">
           Skills
         </h1>
       </div>
-      <SkillsDiv />
+      <SkillsDiv
+        addSkill={props.addSkill}
+        deleteSkill={props.deleteSkill}
+        handleSkillInfo={props.handleSkillInfo}
+        state={props.state}
+      />
     </form>
   );
 }
