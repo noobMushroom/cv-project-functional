@@ -19,7 +19,7 @@ export interface formProps {
   addSkill: (e: React.MouseEvent<HTMLButtonElement>) => void;
   deleteSkill: (e: React.MouseEvent<HTMLButtonElement>, key: string) => void;
   handleEducationInfo: (
-    e: React.FormEvent<HTMLInputElement>,
+    e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>,
     key: string
   ) => void;
   addWork: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -33,8 +33,10 @@ export interface formProps {
 interface Education {
   course: string;
   college: string;
+  location: string;
   starting: string;
   ending: string;
+  educationInformation: string;
   id: string;
 }
 
@@ -253,7 +255,7 @@ export default function App() {
   ///////////////////////////////////////////////////////////////////////////////////////////
 
   const handleEducationInfo = (
-    e: React.FormEvent<HTMLInputElement>,
+    e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>,
     id: string
   ) => {
     const target = e.target as HTMLInputElement;
@@ -273,6 +275,12 @@ export default function App() {
       case 'passing':
         element.ending = target.value;
         break;
+      case 'educationInformation':
+        element.educationInformation = target.value;
+        break;
+      case 'collegeLocation':
+        element.location = target.value;
+        break;
       default:
         return { ...state };
     }
@@ -291,7 +299,15 @@ export default function App() {
       ...prevState,
       education: [
         ...prevState.education,
-        { college: '', course: '', starting: '', ending: '', id: uuidv4() },
+        {
+          college: '',
+          course: '',
+          starting: '',
+          ending: '',
+          educationInformation: '',
+          location: '',
+          id: uuidv4(),
+        },
       ],
     }));
   };

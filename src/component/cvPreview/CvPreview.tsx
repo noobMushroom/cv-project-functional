@@ -25,8 +25,11 @@ export default function CvPreview(props: CvPreviewProps) {
             <WorkInfoDiv state={props.state} />
           </div>
         </div>
-        <div>
-          <EducationDiv state={props.state} />
+        <div className="mt-[1.5rem] mb-[1rem]">
+          <h1 className="mb-[1rem] uppercase font-bold text-2xl">Education</h1>
+          <div>
+            <EducationDiv state={props.state} />
+          </div>
         </div>
       </div>
       <div className="w-1/3 bg-stone-700 text-white p-[1rem] flex flex-col items-center">
