@@ -360,6 +360,12 @@ export default function App() {
     }));
   };
 
+  const [isOpen, setIsopen] = useState(false);
+
+  const openClose = () => {
+    setIsopen(!isOpen);
+  };
+
   return (
     <div className="relative w-full bg-[#0F2830] flex-col items-center flex justify-center">
       <Form
@@ -377,11 +383,14 @@ export default function App() {
         handleImage={handleImage}
         state={state}
       />
-      <button className="hover:text-sky-500 font-[Helvetica] text-white fixed flex flex-col font-semibold uppercase text-xl items-center bottom-4 right-4 ">
+      <button
+        onClick={openClose}
+        className="hover:text-sky-500 font-[Helvetica] text-white fixed flex flex-col font-semibold uppercase text-xl items-center bottom-4 right-4 "
+      >
         <img src={livePreviewImage} alt="" className="w-[4rem]" />
         <h3 className="mt-[-0.5rem]">Live Preview</h3>
       </button>
-      <CvPreview state={state} />
+      <CvPreview state={state} isOpen={isOpen} openClose={openClose} />
     </div>
   );
 }

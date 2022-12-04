@@ -14,3 +14,24 @@
   font-family: 'Kanit', sans-serif;
   transform: scaleY(1.4);
 }
+
+@keyframes load {
+  0% {
+    transform: scale(0);
+    right: -43%;
+    bottom: -15%;
+  }
+
+  99% {
+    transform: scale(0.9999999);
+    right: 0%;
+    bottom: 0%;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animation {
+  animation: load 1s linear;
+}
