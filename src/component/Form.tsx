@@ -13,7 +13,10 @@ export default function Form(props: formProps) {
           Personal info
         </h1>
       </div>
-      <PersonalInfo handleChange={props.handlePersonalInfo} />
+      <PersonalInfo
+        handleChange={props.handlePersonalInfo}
+        handleImage={props.handleImage}
+      />
       <div>
         <h1 className="mt-[2rem] text-white text-4xl font-black text-center mb-[1rem]">
           Contact Info

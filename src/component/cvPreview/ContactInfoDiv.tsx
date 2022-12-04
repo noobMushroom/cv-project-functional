@@ -10,22 +10,38 @@ interface ContactInfoDivProps {
 export default function ContactInfoDiv(props: ContactInfoDivProps) {
   const { state } = props;
   return (
-    <div>
-      <div className="relative flex items-center">
-        <img src={contactImage} alt="" className="w-[2rem] mr-[0.8rem]" />
-        {state.contactInfo.contact}
+    <div className="text-zinc-700">
+      <div className="relative flex items-center mb-[0.4rem]">
+        <img
+          src={contactImage}
+          alt=""
+          className="w-[1.5rem] absolute top-[1.2%] object-cover"
+        />
+        <div className="pl-[2.3rem]">{state.contactInfo.contact}</div>
       </div>
-      <div className="relative flex items-center">
-        <img src={emailImage} alt="" className="w-[2rem] mr-[0.8rem]" />
-        {state.contactInfo.email}
+      <div className="relative flex items-center mb-[0.4rem]">
+        <img
+          src={emailImage}
+          alt=""
+          className="w-[1.5rem] absolute top-[1.2%] object-cover"
+        />
+        <div className="pl-[2.3rem]">{state.contactInfo.email}</div>
       </div>
-      <div className="relative flex items-center">
-        <img src={locationImage} alt="" className="w-[2rem] mr-[0.8rem]" />
-        {state.contactInfo.address}
+      <div className="relative flex items-center mb-[0.4rem]">
+        <img
+          src={locationImage}
+          alt=""
+          className="w-[1.5rem] absolute top-[1.2%] object-cover"
+        />
+        <div className="pl-[2.3rem]">{state.contactInfo.address}</div>
       </div>
-      <div className="relative flex items-center">
-        <img src={urlImage} alt="" className="w-[2rem] mr-[0.8rem]" />
-        {state.contactInfo.web}
+      <div className="relative flex items-center mb-[0.4rem]">
+        <img
+          src={urlImage}
+          alt=""
+          className="w-[1.5rem] absolute top-[1.2%] object-cover"
+        />
+        <div className="pl-[2.3rem]">{state.contactInfo.web}</div>
       </div>
     </div>
   );

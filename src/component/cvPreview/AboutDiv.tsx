@@ -6,5 +6,5 @@ interface AboutDivProps {
 
 export default function AboutDiv(props: AboutDivProps) {
   const { state } = props;
-  return <div>{state.personal.about}</div>;
+  return <div className="text-sm text-left">{state.personal.about}</div>;
 }

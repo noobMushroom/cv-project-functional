@@ -43,7 +43,7 @@ export default function EducationDiv(props: EducationProps) {
                 onChange={(e) => handleEducationInfo(e, element.id)}
                 id="startingDate"
                 type="date"
-                className="bg-transparent focus:outline-none ml-2"
+                className="bg-transparent focus:outline-none ml-2 calender:bg-red-300"
               />
             </div>
             <div className="flex  mr-[1rem] text-white h-[2.5rem] px-[1rem] py-[0.8rem] items-center text-l font-serif font-medium bg-teal-900 box">

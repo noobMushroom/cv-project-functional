@@ -4,13 +4,16 @@ import Form from './component/Form';
 import { v4 as uuidv4 } from 'uuid';
 import livePreviewImage from './assets/visibility_FILL0_wght300_GRAD0_opsz48.svg';
 import CvPreview from './component/cvPreview/CvPreview';
-import ProfilePic from './assets/joanna-nix-walkup-p7zGmc33s0U-unsplash.jpg';
+import ProfilePic from './assets/freestocks-9UVmlIb0wJU-unsplash.jpg';
 
 export interface formProps {
   handlePersonalInfo: (
     e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
-  handleWorkInfo: (e: React.FormEvent<HTMLInputElement>, key: string) => void;
+  handleWorkInfo: (
+    e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>,
+    key: string
+  ) => void;
   handleContactInfo: (e: React.FormEvent<HTMLInputElement>) => void;
   handleSkillInfo: (e: React.FormEvent<HTMLInputElement>, key: string) => void;
   addSkill: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -23,6 +26,7 @@ export interface formProps {
   deleteWork: (e: React.MouseEvent<HTMLButtonElement>, key: string) => void;
   addEducation: (e: React.MouseEvent<HTMLButtonElement>) => void;
   deleteEducation: (e: React.MouseEvent<HTMLButtonElement>, id: string) => void;
+  handleImage: (e: React.FormEvent<HTMLInputElement>) => void;
   state: Person;
 }
 
@@ -40,6 +44,7 @@ interface Work {
   location: string;
   starting: string;
   ending: string;
+  workInformation: string;
   id: string;
 }
 
@@ -76,7 +81,8 @@ export default function App() {
       image: ProfilePic,
       name: '',
       lastName: '',
-      about: '',
+      about:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ullamcorper a lacus vestibulum sed arcu non odio euismod lacinia. Turpis egestas pretium aenean pharetra magna ac placerat vestibulum lectus',
     },
     contactInfo: {
       contact: '899898909',
@@ -90,26 +96,29 @@ export default function App() {
   });
 
   // handling personal info (name, last name, about )
-  const handlepersonalInfo = (
-    e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+
+  const handleImage = (e: React.FormEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
     let image: File;
 
     // for type checking
-    if (target.files !== null && target.files.length !== 0) {
+    if (target.files !== null) {
       image = target.files[0];
     }
+    setState((prevState: Person) => ({
+      ...prevState,
+      personal: {
+        ...prevState.personal,
+        image: URL.createObjectURL(image),
+      },
+    }));
+  };
+
+  const handlepersonalInfo = (
+    e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const target = e.target as HTMLInputElement;
     switch (target.id) {
-      case 'profilePic':
-        setState((prevState: Person) => ({
-          ...prevState,
-          personal: {
-            ...prevState.personal,
-            image: URL.createObjectURL(image),
-          },
-        }));
-        break;
       case 'firstName':
         setState((prevState: Person) => ({
           ...prevState,
@@ -176,7 +185,10 @@ export default function App() {
   ///////////////////////////////// handling work info//////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////
 
-  const handleWorkInfo = (e: React.FormEvent<HTMLInputElement>, id: string) => {
+  const handleWorkInfo = (
+    e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>,
+    id: string
+  ) => {
     const target = e.target as HTMLInputElement;
     const element: Work = state.work.find((work) => work.id === id)!;
     switch (target.id) {
@@ -194,6 +206,9 @@ export default function App() {
         break;
       case 'ending':
         element.ending = target.value;
+        break;
+      case 'workInformation':
+        element.workInformation = target.value;
         break;
       default:
         return { ...state };
@@ -214,6 +229,7 @@ export default function App() {
         ...prevState.work,
         {
           title: '',
+          workInformation: '',
           company: '',
           location: '',
           starting: '',
@@ -342,6 +358,7 @@ export default function App() {
         addSkill={addSkill}
         deleteSkill={deleteSkill}
         deleteEducation={deleteEducation}
+        handleImage={handleImage}
         state={state}
       />
       <button className="hover:text-sky-500 font-[Helvetica] text-white fixed flex flex-col font-semibold uppercase text-xl items-center bottom-4 right-4 ">

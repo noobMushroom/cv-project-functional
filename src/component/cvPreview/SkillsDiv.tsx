@@ -11,7 +11,11 @@ export default function SkillsDiv(props: SkillProps) {
     <div>
       <ul>
         {state.skills.map((element) => {
-          return <li key={element.id}>{element.skill}</li>;
+          return (
+            <li className="list-disc list-inside" key={element.id}>
+              {element.skill}
+            </li>
+          );
         })}
       </ul>
     </div>
