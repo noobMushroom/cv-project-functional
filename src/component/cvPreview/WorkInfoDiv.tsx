@@ -27,13 +27,13 @@ export default function WorkInfoDiv(props: WorkDivProps) {
                 <img
                   src={pointPic}
                   alt=""
-                  className="w-[1.5rem] object-contain absolute left-[-13.4%] bg-white"
+                  className="w-[1.5rem] object-contain absolute left-[-1.8rem] bg-white"
                 />
-                <div className="font-bold capitalize text-xl">
+                <div className="font-bold capitalize text-xl pl-[1rem]">
                   {element.title}
                 </div>
               </div>
-              <div className="italic">{element.workInformation}</div>
+              <div className="italic pl-[1rem]">{element.workInformation}</div>
             </div>
           </div>
         );

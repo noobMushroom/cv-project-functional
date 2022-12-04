@@ -24,7 +24,7 @@ export default function PersonalInfo(props: personalInfoProps) {
       <textarea
         onChange={(e) => props.handleChange(e)}
         id="about"
-        placeholder="i don't know what am i doing"
+        placeholder="About you"
         className="w-full h-[4rem] text-white my-[1rem] py-[0.5rem] px-[1rem] placeholder-white bg-teal-900 text-xl box font-serif font-medium focus:outline-none aboutBox"
       />
       <div className="my-[1rem] w-full bg-teal-900 box text-xl py-[0.5rem] px-[1rem] text-white font-serif font-medium">

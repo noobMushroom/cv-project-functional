@@ -1,3 +1,5 @@
+import { useRef, useState } from 'react';
+import { useReactToPrint } from 'react-to-print';
 import ContactInfoDiv from './ContactInfoDiv';
 import { Person } from '../../App';
 import PersonalinfoDiv from './PersonalInfoDiv';
@@ -7,16 +9,26 @@ import EducationDiv from './EducationInfoDiv';
 import WorkInfoDiv from './WorkInfoDiv';
 import ImageDiv from './Image';
 import closeImage from '../../assets/close.png';
+import printImage from '../../assets/icons8-printer-64.png';
 interface CvPreviewProps {
   state: Person;
   isOpen: boolean;
   openClose: () => void;
 }
-export default function CvPreview(props: CvPreviewProps) {
+
+const CvPreview = (props: CvPreviewProps) => {
   if (!props.isOpen) return null;
+  const componentRef = useRef(null);
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
+
   return (
     <div className="w-full flex items-center justify-center absolute animation bg-black/70 h-full">
-      <div className="flex-row-reverse p-[1rem] mb-[1rem] w-3/4 min-h-[50rem] box flex ">
+      <div
+        ref={componentRef}
+        className="flex-row-reverse p-[1rem] mb-[1rem] w-3/4 min-h-[50rem] box flex "
+      >
         <div className="w-2/3 bg-white text-stone-700 p-[1rem] pl-[2rem]">
           <div className="flex items-center justify-between mt-[5.7rem] pb-[3rem] border-b-2 border-stone-700">
             <PersonalinfoDiv state={props.state} />
@@ -59,11 +71,16 @@ export default function CvPreview(props: CvPreviewProps) {
           </div>
         </div>
       </div>
-      <div className="absolute top-[7%] right-[10%]">
+      <div className="fixed top-[30%] right-[7%] flex flex-col items-center h-[18rem] justify-around ">
         <button onClick={props.openClose}>
-          <img src={closeImage} alt="" className="w-[3rem]" />
+          <img src={closeImage} alt="" className=" w-[4rem] mb-[1rem]" />
+        </button>
+        <button onClick={handlePrint}>
+          <img src={printImage} alt="" className="w-[4rem]" />
         </button>
       </div>
     </div>
   );
-}
+};
+
+export default CvPreview;

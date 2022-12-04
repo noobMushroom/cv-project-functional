@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { useRef, useState } from 'react';
 import './styles/index.css';
 import Form from './component/Form';
 import { v4 as uuidv4 } from 'uuid';
@@ -81,8 +81,8 @@ export default function App() {
   const [state, setState] = useState<Person>({
     personal: {
       image: ProfilePic,
-      name: '',
-      lastName: '',
+      name: 'Emma',
+      lastName: 'Watson',
       about:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ullamcorper a lacus vestibulum sed arcu non odio euismod lacinia. Turpis egestas pretium aenean pharetra magna ac placerat vestibulum lectus',
     },
