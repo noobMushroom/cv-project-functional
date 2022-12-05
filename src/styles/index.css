@@ -35,3 +35,73 @@
 .animation {
   animation: load 1s linear;
 }
+@media print {
+  header,
+  footer,
+  aside,
+  form,
+  … {
+    display: none;
+  }
+  .print {
+    size: A4;
+    width: 100% !important;
+    height: 100% !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .left img {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .left {
+    break-inside: avoid;
+    padding: 0.5rem !important;
+    width: 30%;
+    height: auto !important;
+    margin: 0 !important;
+  }
+  .right {
+    width: 70%;
+    padding-right: 0.5rem;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 1rem !important;
+  }
+  .personalInfoName {
+    margin-top: 4rem;
+    padding-bottom: 1rem !important;
+  }
+  .personalInfoName h1 {
+    font-size: 0.9em !important;
+  }
+
+  .printWorkInfo {
+    padding-right: 0.5rem;
+  }
+  .datesPrint {
+    flex-direction: column;
+    padding: 0 !important;
+    align-items: start;
+  }
+
+  .contactPrint {
+    position: relative;
+  }
+  .contactPrint img {
+    position: absolute;
+    width: 1.2rem;
+    top: 2.5%;
+    object-fit: cover;
+  }
+
+  .ContactPrintChild {
+    padding-left: 2rem;
+    font-size: 18px;
+  }
+}

@@ -11,37 +11,45 @@ export default function ContactInfoDiv(props: ContactInfoDivProps) {
   const { state } = props;
   return (
     <div className="text-zinc-700">
-      <div className="relative flex items-center mb-[0.4rem]">
+      <div className="relative contactPrint flex items-center mb-[0.4rem]">
         <img
           src={contactImage}
           alt=""
           className="w-[1.5rem] absolute top-[1.2%] object-cover"
         />
-        <div className="pl-[2.3rem]">{state.contactInfo.contact}</div>
+        <div className="pl-[2.3rem] ContactPrintChild">
+          {state.contactInfo.contact}
+        </div>
       </div>
-      <div className="relative flex items-center mb-[0.4rem]">
+      <div className="relative contactPrint  flex items-center mb-[0.4rem]">
         <img
           src={emailImage}
           alt=""
           className="w-[1.5rem] absolute top-[1.2%] object-cover"
         />
-        <div className="pl-[2.3rem]">{state.contactInfo.email}</div>
+        <div className="pl-[2.3rem] ContactPrintChild">
+          {state.contactInfo.email}
+        </div>
       </div>
-      <div className="relative flex items-center mb-[0.4rem]">
+      <div className="relative  contactPrint flex items-center mb-[0.4rem]">
         <img
           src={locationImage}
           alt=""
           className="w-[1.5rem] absolute top-[1.2%] object-cover"
         />
-        <div className="pl-[2.3rem]">{state.contactInfo.address}</div>
+        <div className="pl-[2.3rem] ContactPrintChild">
+          {state.contactInfo.address}
+        </div>
       </div>
-      <div className="relative flex items-center mb-[0.4rem]">
+      <div className="relative contactPrint  flex items-center mb-[0.4rem]">
         <img
           src={urlImage}
           alt=""
           className="w-[1.5rem] absolute top-[1.2%] object-cover"
         />
-        <div className="pl-[2.3rem]">{state.contactInfo.web}</div>
+        <div className="pl-[2.3rem] ContactPrintChild">
+          {state.contactInfo.web}
+        </div>
       </div>
     </div>
   );

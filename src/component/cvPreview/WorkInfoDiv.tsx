@@ -13,13 +13,15 @@ export default function WorkInfoDiv(props: WorkDivProps) {
       {state.work.map((element) => {
         return (
           <div key={element.id} className="flex">
-            <div className="w-1/3">
+            <div className="w-1/3 printWorkInfo">
               <div className="font-bold text-xl uppercase">
                 {element.company}
               </div>
               <div className="capitalize">{element.location}</div>
-              <div>
-                {element.starting.slice(0, 7)} to {element.ending.slice(0, 7)}
+              <div className="flex items-center datesPrint">
+                <div>{element.starting.slice(0, 7)}&nbsp;</div>
+                to &nbsp;
+                <div>{element.ending.slice(0, 7)}</div>
               </div>
             </div>
             <div className="w-2/3 border-l-4 pl-[2.2rem] pb-[1rem] border-sky-900 pl-[0.9rem]">

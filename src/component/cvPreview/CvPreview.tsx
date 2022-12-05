@@ -27,10 +27,10 @@ const CvPreview = (props: CvPreviewProps) => {
     <div className="w-full flex items-center justify-center absolute animation bg-black/70 h-full">
       <div
         ref={componentRef}
-        className="flex-row-reverse p-[1rem] mb-[1rem] w-3/4 min-h-[50rem] box flex "
+        className="print flex-row-reverse p-[1rem] mb-[1rem] w-3/4 min-h-[50rem] box flex "
       >
-        <div className="w-2/3 bg-white text-stone-700 p-[1rem] pl-[2rem]">
-          <div className="flex items-center justify-between mt-[5.7rem] pb-[3rem] border-b-2 border-stone-700">
+        <div className="w-2/3 bg-white text-stone-700 p-[1rem] right pl-[2rem]">
+          <div className="flex items-center justify-between personalInfoName mt-[5.7rem] pb-[3rem] border-b-2 border-stone-700">
             <PersonalinfoDiv state={props.state} />
             <ContactInfoDiv state={props.state} />
           </div>
@@ -51,7 +51,7 @@ const CvPreview = (props: CvPreviewProps) => {
             </div>
           </div>
         </div>
-        <div className="w-1/3 bg-stone-700 text-white p-[1rem] flex flex-col items-center">
+        <div className="w-1/3 bg-stone-700 text-white p-[1rem] left  flex flex-col items-center">
           <div>
             <ImageDiv state={props.state} />
           </div>
