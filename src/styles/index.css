@@ -10,6 +10,10 @@
 .box {
   box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
 }
+
+.textShadow {
+  text-shadow: rgba(0, 0, 0, 1) 0px 22px 70px 4px;
+}
 .customfont {
   font-family: 'Kanit', sans-serif;
   transform: scaleY(1.4);
@@ -50,6 +54,7 @@
     box-shadow: none !important;
     padding: 0 !important;
     margin: 0 !important;
+    border-bottom: 2px solid black;
   }
 
   .left img {

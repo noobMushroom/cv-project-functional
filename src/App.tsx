@@ -5,6 +5,8 @@ import { v4 as uuidv4 } from 'uuid';
 import livePreviewImage from './assets/visibility_FILL0_wght300_GRAD0_opsz48.svg';
 import CvPreview from './component/cvPreview/CvPreview';
 import ProfilePic from './assets/freestocks-9UVmlIb0wJU-unsplash.jpg';
+import Header from './component/Header';
+import Footer from './component/Footer';
 
 export interface formProps {
   handlePersonalInfo: (
@@ -368,6 +370,7 @@ export default function App() {
 
   return (
     <div className="relative w-full bg-[#0F2830] flex-col items-center flex justify-center">
+      <Header />
       <Form
         handlePersonalInfo={handlepersonalInfo}
         handleContactInfo={handleContactInfo}
@@ -391,6 +394,7 @@ export default function App() {
         <h3 className="mt-[-0.5rem]">Live Preview</h3>
       </button>
       <CvPreview state={state} isOpen={isOpen} openClose={openClose} />
+      <Footer />
     </div>
   );
 }
